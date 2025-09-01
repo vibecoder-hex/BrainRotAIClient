@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-pp7eo_x($mw0hkk*y959dxn7&w8va&!s3_!8%4@e6)2)irbhzj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -96,11 +96,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
-CORS_ALLOWED_ORIGINS = [
-    "https://your-fastapi-domain.timewebcloudapps.com",
-    "http://localhost:8001",  
-    "http://127.0.0.1:8001",
-]
-
-CORS_ALLOW_CREDENTIALS = True
