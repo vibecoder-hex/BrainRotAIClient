@@ -36,7 +36,7 @@
         }
 
         const getCurrentImage = async (image_id) => {
-            const response = await fetch(`http://127.0.0.1:8001/api/get_current_image/${image_id}`, {
+            const response = await fetch(`https://vibecoder-hex-brainrotai-6cd6.twc1.net/api/get_current_image/${image_id}`, {
                 method: 'GET',
                 credentials: 'include'
             });
@@ -57,7 +57,7 @@
 
         const deleteImage = async(image_id) => {
             try {
-                await fetch(`http://127.0.0.1:8001/api/delete_image/${image_id}`, {
+                await fetch(`https://vibecoder-hex-brainrotai-6cd6.twc1.net/api/delete_image/${image_id}`, {
                     method: "DELETE",
                     credentials: 'include'
                 })
@@ -89,7 +89,7 @@
             const image_ratio = document.getElementById("image_ratio").value;
 
             try {
-                const response = await fetch(`http://127.0.0.1:8001/api/generate/`, {
+                const response = await fetch(`https://vibecoder-hex-brainrotai-6cd6.twc1.net/api/generate/`, {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
@@ -104,11 +104,12 @@
 
                 const responseResult = await response.json()
                 const imageId = responseResult.db_id;
+                const imageCode = responseResult.image_code;
                 
                 const currentImage = await getCurrentImage(imageId);
                 document.getElementById("result_image").innerHTML = `
                 <h3>${prompt_text}</h3>
-                <img src="${currentImage.image_url}" width="500"/>
+                <img src="data:image/png;base64,${imageCode}" width="500"/>
                 <br>
                 <button onclick=clear_result()>Сlose</button>
                 <button onclick=deleteImage(${imageId})>Delete</button>
@@ -126,7 +127,7 @@
         };
 
         const getImages = async () => {
-            const response = await fetch("http://127.0.0.1:8001/api/get_images/", {
+            const response = await fetch("https://vibecoder-hex-brainrotai-6cd6.twc1.net/api/get_images/", {
                 method: "GET",
                 credentials: 'include'
             });
@@ -155,4 +156,4 @@
             );
         }
     </script>
-{% endblock %}   
+{% endblock %}
